@@ -1,6 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NCAAM
+
+> Simple basketball scores and schedules.
+
+# APIS
+
+- https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/66
+- https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/66/schedule
+- https://site.api.espn.com/apis/v2/sports/basketball/mens-college-basketball/standings
+- https://site.web.api.espn.com/apis/v2/sports/basketball/mens-college-basketball/standings?region=us&lang=en&contentorigin=espn&group=50&season=2022
+- https://site.web.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard/conferences
+
+## Overview
+
+This app using the following stack:
+
+- [Next.js 13](https://nextjs.org/13)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Vercel Analytics](https://vercel.com/analytics)
+- [ESLint](https://eslint.org)
+- [Prettier](https://prettier.io)
 
 ## Getting Started
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 First, run the development server:
 
