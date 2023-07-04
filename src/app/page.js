@@ -19,7 +19,29 @@ const Row = ({ image, name, score, win }) => {
   );
 };
 
-export default function Home() {
+// This instence of the page component is server components by default.
+export default async function Home() {
+  const response = await fetch(
+    "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/66/schedule"
+  );
+
+  const data = await response.json();
+
+  // for all of the events on the schedule
+  // we want to iterate over the competitors and get the name and logo
+  // we also want to get the score and the winner
+
+  const events = data.events.map((event) => {
+    return event.competitions[0].competitors.map((competitor) => {
+      return {
+        name: competitor.team.displayName,
+        logo: competitor.team.logos[0].href,
+        score: competitor.score.value,
+        win: competitor.winner,
+      };
+    });
+  });
+
   return (
     <>
       <Row

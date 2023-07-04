@@ -2,7 +2,7 @@
 
 > Simple basketball scores and schedules.
 
-# APIS
+# APIs
 
 - https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/66
 - https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/66/schedule
