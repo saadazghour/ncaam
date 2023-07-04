@@ -9,7 +9,11 @@ const Row = ({ image, name, score, win }) => {
       </div>
       <div className="flex text-right">
         <p className="text-gray-700">{score}</p>
-        <p className="ml-2 font-semibold text-green-700">{win}</p>
+        {win ? (
+          <p className="ml-2 font-semibold text-green-700">W</p>
+        ) : (
+          <p className="ml-2 font-semibold text-red-700">L</p>
+        )}
       </div>
     </div>
   );
@@ -22,7 +26,23 @@ export default function Home() {
         name="Iowa State Cyclones"
         image="https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
         score="88-39"
-        win="W"
+        win
+      />
+      <Row
+        name="Milwaukee"
+        image="https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
+        score="68-53"
+      />
+      <Row
+        name="Iowa State Cyclones"
+        image="https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
+        score="88-39"
+        win
+      />
+      <Row
+        name="Villanova"
+        image="https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
+        score="81-79"
       />
     </>
   );
