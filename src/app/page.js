@@ -34,6 +34,7 @@ export default async function Home() {
   const events = data.events.map((event) => {
     return event.competitions[0].competitors.map((competitor) => {
       return {
+        id: competitor.id,
         name: competitor.team.displayName,
         logo: competitor.team.logos[0].href,
         score: competitor.score.value,
@@ -44,28 +45,11 @@ export default async function Home() {
 
   return (
     <>
-      <Row
-        name="Iowa State Cyclones"
-        image="https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
-        score="88-39"
-        win
-      />
-      <Row
-        name="Milwaukee"
-        image="https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
-        score="68-53"
-      />
-      <Row
-        name="Iowa State Cyclones"
-        image="https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
-        score="88-39"
-        win
-      />
-      <Row
-        name="Villanova"
-        image="https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
-        score="81-79"
-      />
+      {events.map((event) => {
+        const { id, name, logo, score, win } = event[1]; // we only want the second competitor
+
+        return <Row key={id} name={name} image={logo} score={score} win />;
+      })}
     </>
   );
 }
