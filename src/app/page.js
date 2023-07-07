@@ -32,23 +32,42 @@ export default async function Home() {
   // we also want to get the score and the winner
 
   const events = data.events.map((event) => {
-    return event.competitions[0].competitors.map((competitor) => {
+    const { competitors } = event.competitions[0];
+
+    // We are filtering to get some of the data we need.
+    const winner = competitors.find((c) => c.winner);
+    const otherTeam = competitors.find((c) => c.id !== 66);
+    const favoriteTeam = competitors.find((c) => c.id === 66);
+    const score = favoriteTeam?.score;
+
+    return competitors.map((competitor) => {
       return {
-        id: competitor.id,
+        id: competitor.team.id,
         name: competitor.team.displayName,
         logo: competitor.team.logos[0].href,
         score: competitor.score.value,
         win: competitor.winner,
       };
     });
+
+    // Here we are returning an array of objects.
+    // return {
+    //   id: competitor.team.id,
+    //   name: otherTeam.name,
+    //   logo: otherTeam.logo,
+    //   score: score && `${otherTeam.score.value}-${favoriteTeam?.score.value}`,
+    //   win: winner && favoriteTeam.winner,
+    // };
   });
 
   return (
     <>
-      {events.map((event) => {
+      {events.slice(0, 5).map((event) => {
         const { id, name, logo, score, win } = event[1]; // we only want the second competitor
 
-        return <Row key={id} name={name} image={logo} score={score} win />;
+        return (
+          <Row key={id} name={name} image={logo} score={score} win={win} />
+        );
       })}
     </>
   );
