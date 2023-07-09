@@ -1,4 +1,6 @@
 import Image from "next/image";
+import TeamSelect from "./select";
+import { getTeamData } from "./espn";
 
 const Row = ({ image, name, score, win, date }) => {
   // Convert the ISO date string to a readable date.
@@ -40,7 +42,7 @@ const Row = ({ image, name, score, win, date }) => {
 };
 
 // This instence of the page component is server components by default.
-export default async function Home() {
+export default async function Home({ params }) {
   // This fetch is Equivilance to getStaticProps in NextJS.
   const response = await fetch(
     "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/66/schedule"
@@ -55,40 +57,38 @@ export default async function Home() {
   const events = data.events.map((event) => {
     const { competitors } = event.competitions[0];
 
-    // We are filtering to get some of the data we need.
-    const winner = competitors.find((c) => c.winner);
-    const otherTeam = competitors.find((c) => c.id !== 66);
-    const favoriteTeam = competitors.find((c) => c.id === 66);
-    const score = favoriteTeam?.score;
-
-    return competitors.map((competitor) => {
+    const competitorsArray = competitors.map((competitor) => {
       return {
         id: competitor.team.id,
         date: event.competitions[0].date,
         name: competitor.team.displayName,
         logo: competitor.team.logos[0].href,
         score: competitor.score.value,
-        win: winner,
+        winner: competitor.winner,
       };
     });
 
-    // Here we are returning an array of objects.
-    // return {
-    //   id: competitor.team.id,
-    //   name: otherTeam.name,
-    //   logo: otherTeam.logo,
-    //   score: score && `${otherTeam.score.value}-${favoriteTeam?.score.value}`,
-    //   win: winner && favoriteTeam.winner,
-    // };
+    // We are filtering to get some of the data we need.
+    const otherTeam = competitorsArray.find((c) => c.id != 66);
+    const favoriteTeam = competitorsArray.find((c) => c.id == 66);
+    const score = favoriteTeam.score;
+
+    return {
+      id: event.id,
+      date: event.competitions[0].date,
+      name: otherTeam.name,
+      logo: otherTeam.logo,
+      score: score && `${otherTeam.score}-${favoriteTeam.score}`,
+      winner: favoriteTeam.winner,
+    };
   });
 
   return (
     <>
+      {/* <TeamSelect /> */}
       <h2 className="ml-4 text-xl font-semibold">Schedule</h2>
       <h3 className="mb-2 ml-4 font-semibold text-gray-700">Full</h3>
-      {events.map((event) => {
-        const { id, name, logo, score, win, date } = event[1]; // we only want the second competitor
-
+      {events.map(({ id, date, name, logo, score, winner }) => {
         return (
           <Row
             key={id}
@@ -96,7 +96,7 @@ export default async function Home() {
             image={logo}
             date={date}
             score={score}
-            win={win}
+            win={winner}
           />
         );
       })}
