@@ -17,6 +17,13 @@ const nextConfig = {
     appDir: true,
     allowFutureImage: true,
   },
+  redirects: () => [
+    {
+      source: "/",
+      destination: "/66", // Default to ISU
+      permanent: false,
+    },
+  ],
 };
 
 module.exports = nextConfig;
