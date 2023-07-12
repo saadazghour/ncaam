@@ -75,5 +75,12 @@ export async function getAllTeamIds(teamId) {
     page++;
   }
 
+  // Sort teams Alphabetically A-Z
+  teams.sort((a, b) => {
+    a.name > b.name ? 1 : -1;
+
+    return 0;
+  });
+
   return teams;
 }
