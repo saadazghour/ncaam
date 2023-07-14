@@ -40,6 +40,7 @@ export async function getTeamData(teamId) {
   });
 
   return {
+    id: teamId,
     name: data.team.displayName,
     logo: data.team.logo,
     color: data.team.color,
@@ -49,7 +50,7 @@ export async function getTeamData(teamId) {
   };
 }
 
-export async function getAllTeamIds(teamId) {
+export async function getAllTeamIds() {
   // Total Pages is the number of teams divided by 100 (max 100 teams per page).
   // const totalPages = data.sports.leagues[0].teams.length / 100;
 
