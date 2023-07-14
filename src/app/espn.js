@@ -16,7 +16,6 @@ export async function getTeamData(teamId) {
     // We are filtering to get some of the data we need.
     const otherTeam = competitors.find((c) => c.team.id != teamId);
     const favoriteTeam = competitors.find((c) => c.team.id == teamId);
-    // const score = favoriteTeam.score;
 
     // Unfortunately this data isn't on this API yet
     // This is for teams with black logos, so we invert the color of the image
@@ -32,17 +31,19 @@ export async function getTeamData(teamId) {
       ? otherTeam.team.logos[0].href
       : "https://a.espncdn.com/i/teamlogos/default-team-logo-500.png";
 
-    return {
-      teamId: otherTeam.team.id,
-      date: date,
-      name: otherTeam.team.displayName,
-      rank: otherTeam.curatedRank.current,
-      homeScore: favoriteTeam.score?.value,
-      awayScore: otherTeam.score?.value,
-      winner: favoriteTeam.winner,
-      logo,
-      color,
-    };
+    return competitors.map((c) => {
+      return {
+        id: c.team.id,
+        date: date,
+        name: c.team.displayName,
+        rank: otherTeam.curatedRank.current,
+        homeScore: favoriteTeam.score?.value,
+        awayScore: otherTeam.score?.value,
+        winner: favoriteTeam.winner,
+        logo,
+        color,
+      };
+    });
   });
 
   return {
