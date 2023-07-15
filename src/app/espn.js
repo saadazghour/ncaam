@@ -46,12 +46,16 @@ export async function getTeamData(teamId) {
     });
   });
 
+  // This is for the team's data
+  const logoTeam = data.team.logos
+    ? data.team.logos[0].href
+    : "https://a.espncdn.com/i/teamlogos/default-team-logo-500.png";
+
   return {
     id: teamId,
     name: data.team.displayName,
-    logo: data.team.logo,
+    logo: logoTeam,
     color: data.team.color,
-    record: data.team.recordSummary,
     standing: data.team.standingSummary,
     games,
   };
