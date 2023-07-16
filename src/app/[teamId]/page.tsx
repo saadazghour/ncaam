@@ -4,17 +4,7 @@ import ImageTeam from "./imageTeam";
 
 import { getTeamData, getAllTeamIds } from "../espn";
 
-const Row = ({
-  id,
-  logo,
-  name,
-  color,
-  rank,
-  homeScore,
-  awayScore,
-  winner,
-  date,
-}) => {
+const Row = ({ logo, name, homeScore, awayScore, winner, date }) => {
   return (
     <div className="flex justify-between px-8 py-2 border-b border-gray-300">
       <div className="flex">
@@ -55,12 +45,12 @@ export default async function Home({ params }) {
     getAllTeamIds(),
   ]);
 
-  const { id, name, logo, color, standing, games } = team;
+  const { name, logo, color, standing, games } = team;
   const [allGames] = games;
 
   return (
     <>
-      <ImageTeam name={name} logo={logo} color={color} standing={standing}/>
+      <ImageTeam name={name} logo={logo} color={color} standing={standing} />
       <TeamSelect allTeams={allTeams} teamId={params.teamId} />
 
       <h2 className="ml-4 text-xl font-semibold">Schedule</h2>
