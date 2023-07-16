@@ -1,5 +1,7 @@
 import Image from "next/image";
 import TeamSelect from "./select";
+import ImageTeam from "./imageTeam";
+
 import { getTeamData, getAllTeamIds } from "../espn";
 
 const Row = ({
@@ -58,15 +60,7 @@ export default async function Home({ params }) {
 
   return (
     <>
-      <div className="h-4 w-full ml-2" style={{ background: `#${color}` }} />
-      <div className="max-w-lg ml-2 py-4">
-        <div className="flex items-start">
-          <Image src={logo} alt={name} width={24} height={24} />
-          <h1 className="font-semibold ml-2 text-1xl">{name}</h1>
-        </div>
-        <h3 className="text-gray-700 dark:text-gray-300 mb-2">{` • ${standing}`}</h3>
-      </div>
-
+      <ImageTeam name={name} logo={logo} color={color} standing={standing}/>
       <TeamSelect allTeams={allTeams} teamId={params.teamId} />
 
       <h2 className="ml-4 text-xl font-semibold">Schedule</h2>
