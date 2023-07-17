@@ -25,22 +25,22 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>{children}</body>
-      <footer className="flex items-center justify-center w-full mt-2 mb-4 text-xs text-gray-600 dark:text-gray-400">
-        {"Build using the"}
+      <footer className="mx-auto mt-2 mb-4 text-xs text-center text-gray-600 dark:text-gray-400">
+        {"Built using the "}
         <a
           href="https://espn.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-1 mr-1 transition-all border-b border-gray-400  dark:border-gray-600 hover:border-gray-600 hover:text-gray-800 hover:dark:text-gray-200"
+          className="transition-all border-b border-gray-400 dark:border-gray-600 hover:border-gray-600 hover:dark:border-gray-400 hover:text-gray-800 hover:dark:text-gray-200"
         >
-          ESPN API,
+          ESPN API
         </a>
-        {"NextJS, and Vercel,"}
+        {", NextJS, and Vercel. "}
         <a
           href="https://github.com/saadazghour/ncaam"
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-1 transition-all border-b border-gray-400 dark:border-gray-600 hover:border-gray-600 hover:dark:border-gray-400 hover:text-gray-800 hover:dark:text-gray-200"
+          className="ml-1 transition-all border-b border-gray-400 ml-1border-b dark:border-gray-600 hover:border-gray-600 hover:dark:border-gray-400 hover:text-gray-800 hover:dark:text-gray-200"
         >
           View the code.
         </a>
